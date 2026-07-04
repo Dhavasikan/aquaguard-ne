@@ -25,7 +25,7 @@ function Register() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:8080/api/auth/register", form);
+      await axios.post("https://aquaguard-ne.onrender.com/api/auth/register", form);
       setSuccess(true);
       setTimeout(() => navigate("/dashboard"), 2000);
     } catch (err) {

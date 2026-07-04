@@ -25,7 +25,7 @@ function ReportForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("http://localhost:8080/api/reports", form);
+      await axios.post("https://aquaguard-ne.onrender.com/api/reports", form);
       alert("Case report submitted successfully!");
       navigate("/reports");
     } catch (err) {

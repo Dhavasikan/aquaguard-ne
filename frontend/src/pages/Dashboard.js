@@ -8,7 +8,7 @@ function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/reports").then((res) => {
+    axios.get("https://aquaguard-ne.onrender.com/api/reports").then((res) => {
       setReports(res.data);
     });
   }, []);
@@ -170,7 +170,7 @@ function Dashboard() {
               <Link to="/add-report" className="quick-btn primary">➕ New Case Report</Link>
               <Link to="/reports" className="quick-btn secondary">📋 View All Reports</Link>
               <Link to="/register" className="quick-btn secondary">👤 Register ASHA Worker</Link>
-              <a href="http://localhost:8080/api/reports" target="_blank" rel="noreferrer" className="quick-btn secondary">🔗 View API Data</a>
+              <a href="https://aquaguard-ne.onrender.com/api/reports" target="_blank" rel="noreferrer" className="quick-btn secondary">🔗 View API Data</a>
             </div>
           </div>
         </div>

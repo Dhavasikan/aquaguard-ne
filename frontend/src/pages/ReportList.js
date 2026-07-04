@@ -8,7 +8,7 @@ function ReportList() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const loadReports = () => {
-    axios.get("http://localhost:8080/api/reports").then((res) => {
+    axios.get("https://aquaguard-ne.onrender.com/api/reports").then((res) => {
       setReports(res.data);
     });
   };
@@ -19,7 +19,7 @@ function ReportList() {
 
   const handleDelete = async (id) => {
     if (window.confirm("Delete this report?")) {
-      await axios.delete(`http://localhost:8080/api/reports/${id}`);
+      await axios.delete(`https://aquaguard-ne.onrender.com/api/reports/${id}`);
       loadReports();
     }
   };
