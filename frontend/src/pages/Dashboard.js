@@ -191,6 +191,7 @@ function Dashboard() {
             <div className="quick-actions">
               <Link to="/add-report" className="quick-btn primary">➕ New Case Report</Link>
               <Link to="/reports" className="quick-btn secondary">📋 View All Reports</Link>
+              <Link to="/water-quality" className="quick-btn secondary">💧 Water Quality</Link>
               <Link to="/register" className="quick-btn secondary">👤 Register ASHA Worker</Link>
               <a href="https://aquaguard-ne.onrender.com/api/reports" target="_blank" rel="noreferrer" className="quick-btn secondary">🔗 View API Data</a>
             </div>

@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import ReportForm from "./pages/ReportForm";
 import ReportList from "./pages/ReportList";
+import WaterQuality from "./pages/WaterQuality";
 import "./App.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/add-report" element={<ReportForm />} />
+        <Route path="/water-quality" element={<WaterQuality />} />
         <Route path="/reports" element={<ReportList />} />
       </Routes>
     </BrowserRouter>
