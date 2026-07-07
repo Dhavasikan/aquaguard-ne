@@ -31,6 +31,14 @@ const handleStatusChange = async (id, newStatus) => {
     });
     loadReports();
   };
+  const handleActionUpdate = async (id, notes) => {
+    const report = reports.find((r) => r.id === id);
+    await axios.put(`https://aquaguard-ne.onrender.com/api/reports/${id}`, {
+      ...report,
+      actionsTaken: notes,
+    });
+    loadReports();
+  };
   const filtered = reports.filter(
     (r) =>
       r.patientName.toLowerCase().includes(search.toLowerCase()) ||
@@ -103,6 +111,7 @@ const handleStatusChange = async (id, newStatus) => {
                 <th>Symptoms</th>
                 <th>Date</th>
                 <th>Status</th>
+                <th>Actions Taken</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -126,6 +135,14 @@ const handleStatusChange = async (id, newStatus) => {
                     <td className="symptoms-cell">{r.symptoms}</td>
                     <td>{r.reportDate}</td>
                     <td><span className={getStatusClass(r.status)}>{r.status}</span></td>
+                    <td>
+                      <input
+                        type="text"
+                        defaultValue={r.actionsTaken}
+                        placeholder="e.g. Medicine given, water tested"
+                        onBlur={(e) => handleActionUpdate(r.id, e.target.value)}
+                      />
+                    </td>
                     <td>
 <select value={r.status} onChange={(e) => handleStatusChange(r.id, e.target.value)}>
                       <option value="PENDING">PENDING</option>
