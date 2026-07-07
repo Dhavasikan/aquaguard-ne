@@ -202,6 +202,26 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #0e1a14; color: #
 .data-table tr:hover td { background: rgba(58,158,110,0.06); }
 .data-table tr:last-child td { border-bottom: none; }
 .symptoms-cell { max-width: 150px; font-size: 0.78rem; color: #8abca0; line-height: 1.4; }
+.info-tip {
+  display: inline-block;
+  margin-left: 4px;
+  color: #5bc8a0;
+  cursor: help;
+  font-weight: 700;
+}
+.action-input {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border: 1.5px solid rgba(58,158,110,0.35);
+  border-radius: 6px;
+  background: #0e1a14;
+  color: #f5f2ec;
+  font-size: 0.8rem;
+  outline: none;
+  font-family: inherit;
+}
+.action-input:focus { border-color: #5bc8a0; }
+.action-input::placeholder { color: rgba(245,242,236,0.3); }
 
 /* ══════════════════════════════════
    ADD REPORT FORM PAGE

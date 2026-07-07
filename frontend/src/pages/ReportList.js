@@ -133,11 +133,14 @@ const handleStatusChange = async (id, newStatus) => {
                     <td>{r.village}</td>
                     <td>{r.district}</td>
                     <td>
-                  <div>{r.diseaseSuspected}</div>
+                  <span>{r.diseaseSuspected}</span>
                   {diseaseInfo[r.diseaseSuspected] && (
-                    <div style={{fontSize:"0.75rem", color:"#a0c8b0", marginTop:"4px"}}>
-                      💊 {diseaseInfo[r.diseaseSuspected].treatment}
-                    </div>
+                    <span
+                      className="info-tip"
+                      title={diseaseInfo[r.diseaseSuspected].treatment}
+                    >
+                      {" "}ⓘ
+                    </span>
                   )}
                 </td>
                     <td className="symptoms-cell">{r.symptoms}</td>
@@ -145,6 +148,7 @@ const handleStatusChange = async (id, newStatus) => {
                     <td><span className={getStatusClass(r.status)}>{r.status}</span></td>
                     <td>
                       <input
+                      className="action-input"
                         type="text"
                         defaultValue={r.actionsTaken}
                         placeholder="e.g. Medicine given, water tested"
