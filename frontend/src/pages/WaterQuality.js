@@ -8,6 +8,7 @@ function WaterQuality() {
   const [turbidity, setTurbidity] = useState("");
   const [riskLevel, setRiskLevel] = useState("Low");
   const [testDate, setTestDate] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const API_URL = "https://aquaguard-ne.onrender.com/api/water";
 
@@ -24,12 +25,37 @@ function WaterQuality() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setErrorMsg("");
+
+    const phNum = parseFloat(ph);
+    const turbidityNum = parseFloat(turbidity);
+
+    if (!sourceName.trim()) {
+      setErrorMsg("Please enter a source name.");
+      return;
+    }
+    if (!district.trim()) {
+      setErrorMsg("Please enter a district.");
+      return;
+    }
+    if (isNaN(phNum) || phNum < 0 || phNum > 14) {
+      setErrorMsg("pH must be a number between 0 and 14.");
+      return;
+    }
+    if (isNaN(turbidityNum) || turbidityNum < 0) {
+      setErrorMsg("Turbidity must be a positive number.");
+      return;
+    }
+    if (!testDate) {
+      setErrorMsg("Please select a test date.");
+      return;
+    }
 
     const newReading = {
       sourceName: sourceName,
       district: district,
-      ph: parseFloat(ph),
-      turbidity: parseFloat(turbidity),
+      ph: phNum,
+      turbidity: turbidityNum,
       riskLevel: riskLevel,
       testDate: testDate,
     };
@@ -49,7 +75,10 @@ function WaterQuality() {
         setTestDate("");
         fetchReadings();
       })
-      .catch((err) => console.error("Error adding reading:", err));
+      .catch((err) => {
+        console.error("Error adding reading:", err);
+        setErrorMsg("Something went wrong saving this reading. Please try again.");
+      });
   };
 
   const handleDelete = (id) => {
@@ -64,12 +93,29 @@ function WaterQuality() {
     return "#51cf66";
   };
 
+  const riskBadgeStyle = (level) => ({
+    display: "inline-block",
+    padding: "4px 12px",
+    borderRadius: "20px",
+    fontWeight: "bold",
+    fontSize: "13px",
+    color: "#0d2b1f",
+    backgroundColor: riskColor(level),
+  });
+
   const pageStyle = {
     padding: "30px",
     backgroundColor: "#0d2b1f",
     minHeight: "100vh",
     color: "#e6f4ea",
     fontFamily: "Arial, sans-serif",
+  };
+
+  const rowLayoutStyle = {
+    display: "flex",
+    gap: "25px",
+    alignItems: "flex-start",
+    flexWrap: "wrap",
   };
 
   const cardStyle = {
@@ -80,10 +126,21 @@ function WaterQuality() {
     boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
   };
 
+  const formCardStyle = {
+    ...cardStyle,
+    flex: "1 1 350px",
+    maxWidth: "400px",
+  };
+
+  const tableCardStyle = {
+    ...cardStyle,
+    flex: "2 1 500px",
+    overflowX: "auto",
+  };
+
   const inputStyle = {
     display: "block",
     width: "100%",
-    maxWidth: "400px",
     padding: "10px",
     marginBottom: "15px",
     borderRadius: "6px",
@@ -91,6 +148,7 @@ function WaterQuality() {
     backgroundColor: "#0d2b1f",
     color: "#e6f4ea",
     fontSize: "14px",
+    boxSizing: "border-box",
   };
 
   const buttonStyle = {
@@ -102,6 +160,7 @@ function WaterQuality() {
     fontWeight: "bold",
     fontSize: "14px",
     cursor: "pointer",
+    width: "100%",
   };
 
   const deleteButtonStyle = {
@@ -114,11 +173,22 @@ function WaterQuality() {
     fontSize: "13px",
   };
 
+  const errorStyle = {
+    backgroundColor: "#3a1a1a",
+    color: "#ff9b9b",
+    border: "1px solid #ff6b6b",
+    borderRadius: "6px",
+    padding: "10px 14px",
+    marginBottom: "15px",
+    fontSize: "14px",
+  };
+
   const thStyle = {
     textAlign: "left",
     padding: "10px",
     borderBottom: "2px solid #2f6e4e",
     color: "#8fd4ac",
+    whiteSpace: "nowrap",
   };
 
   const tdStyle = {
@@ -133,112 +203,112 @@ function WaterQuality() {
         Track water source readings across NE India
       </p>
 
-      <div style={cardStyle}>
-        <h3 style={{ marginTop: 0 }}>Add New Reading</h3>
-        <form onSubmit={handleSubmit}>
-          <input
-            style={inputStyle}
-            type="text"
-            placeholder="Source Name (e.g. Barak River)"
-            value={sourceName}
-            onChange={(e) => setSourceName(e.target.value)}
-            required
-          />
+      <div style={rowLayoutStyle}>
+        <div style={formCardStyle}>
+          <h3 style={{ marginTop: 0 }}>Add New Reading</h3>
 
-          <input
-            style={inputStyle}
-            type="text"
-            placeholder="District"
-            value={district}
-            onChange={(e) => setDistrict(e.target.value)}
-            required
-          />
+          {errorMsg && <div style={errorStyle}>⚠ {errorMsg}</div>}
 
-          <input
-            style={inputStyle}
-            type="number"
-            step="0.1"
-            placeholder="pH Level"
-            value={ph}
-            onChange={(e) => setPh(e.target.value)}
-            required
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              style={inputStyle}
+              type="text"
+              placeholder="Source Name (e.g. Barak River)"
+              value={sourceName}
+              onChange={(e) => setSourceName(e.target.value)}
+            />
 
-          <input
-            style={inputStyle}
-            type="number"
-            step="0.1"
-            placeholder="Turbidity"
-            value={turbidity}
-            onChange={(e) => setTurbidity(e.target.value)}
-            required
-          />
+            <input
+              style={inputStyle}
+              type="text"
+              placeholder="District"
+              value={district}
+              onChange={(e) => setDistrict(e.target.value)}
+            />
 
-          <select
-            style={inputStyle}
-            value={riskLevel}
-            onChange={(e) => setRiskLevel(e.target.value)}
-          >
-            <option value="Low">Low Risk</option>
-            <option value="Medium">Medium Risk</option>
-            <option value="High">High Risk</option>
-          </select>
+            <input
+              style={inputStyle}
+              type="number"
+              step="0.1"
+              placeholder="pH Level (0-14)"
+              value={ph}
+              onChange={(e) => setPh(e.target.value)}
+            />
 
-          <input
-            style={inputStyle}
-            type="date"
-            value={testDate}
-            onChange={(e) => setTestDate(e.target.value)}
-            required
-          />
+            <input
+              style={inputStyle}
+              type="number"
+              step="0.1"
+              placeholder="Turbidity"
+              value={turbidity}
+              onChange={(e) => setTurbidity(e.target.value)}
+            />
 
-          <button type="submit" style={buttonStyle}>
-            Add Reading
-          </button>
-        </form>
-      </div>
+            <select
+              style={inputStyle}
+              value={riskLevel}
+              onChange={(e) => setRiskLevel(e.target.value)}
+            >
+              <option value="Low">Low Risk</option>
+              <option value="Medium">Medium Risk</option>
+              <option value="High">High Risk</option>
+            </select>
 
-      <div style={cardStyle}>
-        <h3 style={{ marginTop: 0 }}>All Readings</h3>
-        <table style={{ width: "100%", borderCollapse: "collapse" }}>
-          <thead>
-            <tr>
-              <th style={thStyle}>Source</th>
-              <th style={thStyle}>District</th>
-              <th style={thStyle}>pH</th>
-              <th style={thStyle}>Turbidity</th>
-              <th style={thStyle}>Risk Level</th>
-              <th style={thStyle}>Test Date</th>
-              <th style={thStyle}>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {readings.length === 0 && (
+            <input
+              style={inputStyle}
+              type="date"
+              value={testDate}
+              onChange={(e) => setTestDate(e.target.value)}
+            />
+
+            <button type="submit" style={buttonStyle}>
+              Add Reading
+            </button>
+          </form>
+        </div>
+
+        <div style={tableCardStyle}>
+          <h3 style={{ marginTop: 0 }}>All Readings</h3>
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
+            <thead>
               <tr>
-                <td style={tdStyle} colSpan="7">
-                  No readings yet. Add one above.
-                </td>
+                <th style={thStyle}>Source</th>
+                <th style={thStyle}>District</th>
+                <th style={thStyle}>pH</th>
+                <th style={thStyle}>Turbidity</th>
+                <th style={thStyle}>Risk Level</th>
+                <th style={thStyle}>Test Date</th>
+                <th style={thStyle}>Action</th>
               </tr>
-            )}
-            {readings.map((r) => (
-              <tr key={r.id}>
-                <td style={tdStyle}>{r.sourceName}</td>
-                <td style={tdStyle}>{r.district}</td>
-                <td style={tdStyle}>{r.ph}</td>
-                <td style={tdStyle}>{r.turbidity}</td>
-                <td style={{ ...tdStyle, color: riskColor(r.riskLevel), fontWeight: "bold" }}>
-                  {r.riskLevel}
-                </td>
-                <td style={tdStyle}>{r.testDate}</td>
-                <td style={tdStyle}>
-                  <button style={deleteButtonStyle} onClick={() => handleDelete(r.id)}>
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {readings.length === 0 && (
+                <tr>
+                  <td style={tdStyle} colSpan="7">
+                    No readings yet. Add one on the left.
+                  </td>
+                </tr>
+              )}
+              {readings.map((r) => (
+                <tr key={r.id}>
+                  <td style={tdStyle}>{r.sourceName}</td>
+                  <td style={tdStyle}>{r.district}</td>
+                  <td style={tdStyle}>{r.ph}</td>
+                  <td style={tdStyle}>{r.turbidity}</td>
+                  <td style={tdStyle}>
+                    <span style={riskBadgeStyle(r.riskLevel)}>{r.riskLevel}</span>
+                  </td>
+                  <td style={tdStyle}>{r.testDate}</td>
+                  <td style={tdStyle}>
+                    <button style={deleteButtonStyle} onClick={() => handleDelete(r.id)}>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
