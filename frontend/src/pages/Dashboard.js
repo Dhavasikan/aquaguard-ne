@@ -24,6 +24,26 @@ function Dashboard() {
   };
 
   const recentReports = reports.slice(-3).reverse();
+  const detectOutbreaks = () => {
+    const alerts = [];
+    const grouped = {};
+    reports.forEach((r) => {
+      const key = r.district + "|" + r.diseaseSuspected;
+      if (!grouped[key]) grouped[key] = [];
+      grouped[key].push(r);
+    });
+    Object.keys(grouped).forEach((key) => {
+      const cases = grouped[key];
+      if (cases.length >= 3) {
+        const [district, disease] = key.split("|");
+        alerts.push(
+          `${disease} cluster detected in ${district} district. ${cases.length} cases reported.`
+        );
+      }
+    });
+    return alerts;
+  };
+  const outbreakAlerts = detectOutbreaks();
 
   const getStatusClass = (status) => {
     if (status === "PENDING") return "status-badge pending";
@@ -65,10 +85,12 @@ function Dashboard() {
           </div>
         </div>
 
-        <div className="alert-banner">
-          ⚠ <strong>Active Alert:</strong> Cholera cluster detected in Cachar district. 3 cases reported in last 48 hours. Immediate response required.
-        </div>
-
+        {outbreakAlerts.length > 0 && (
+          <div className="alert-banner">
+            ⚠ <strong>Active Alert{outbreakAlerts.length > 1 ? "s" : ""}:</strong>{" "}
+            {outbreakAlerts.join(" ")}
+          </div>
+        )}
         <div className="stat-cards">
           <div className="stat-card">
             <div className="stat-icon">📁</div>
