@@ -23,7 +23,14 @@ function ReportList() {
       loadReports();
     }
   };
-
+const handleStatusChange = async (id, newStatus) => {
+    const report = reports.find((r) => r.id === id);
+    await axios.put(`https://aquaguard-ne.onrender.com/api/reports/${id}`, {
+      ...report,
+      status: newStatus,
+    });
+    loadReports();
+  };
   const filtered = reports.filter(
     (r) =>
       r.patientName.toLowerCase().includes(search.toLowerCase()) ||
@@ -120,8 +127,12 @@ function ReportList() {
                     <td>{r.reportDate}</td>
                     <td><span className={getStatusClass(r.status)}>{r.status}</span></td>
                     <td>
-                      <button className="btn-danger" onClick={() => handleDelete(r.id)}>Delete</button>
-                    </td>
+<select value={r.status} onChange={(e) => handleStatusChange(r.id, e.target.value)}>
+                      <option value="PENDING">PENDING</option>
+                      <option value="VERIFIED">VERIFIED</option>
+                      <option value="RESOLVED">RESOLVED</option>
+                    </select>
+                    <button className="btn-danger" onClick={() => handleDelete(r.id)}>Delete</button>                    </td>
                   </tr>
                 ))
               )}
