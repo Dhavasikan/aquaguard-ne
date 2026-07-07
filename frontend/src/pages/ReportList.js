@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import diseaseInfo from "../diseaseInfo";
 
 function ReportList() {
   const [reports, setReports] = useState([]);
@@ -131,7 +132,14 @@ const handleStatusChange = async (id, newStatus) => {
                     <td>{r.gender}</td>
                     <td>{r.village}</td>
                     <td>{r.district}</td>
-                    <td>{r.diseaseSuspected}</td>
+                    <td>
+                  <div>{r.diseaseSuspected}</div>
+                  {diseaseInfo[r.diseaseSuspected] && (
+                    <div style={{fontSize:"0.75rem", color:"#a0c8b0", marginTop:"4px"}}>
+                      💊 {diseaseInfo[r.diseaseSuspected].treatment}
+                    </div>
+                  )}
+                </td>
                     <td className="symptoms-cell">{r.symptoms}</td>
                     <td>{r.reportDate}</td>
                     <td><span className={getStatusClass(r.status)}>{r.status}</span></td>
