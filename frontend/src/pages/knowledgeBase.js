@@ -119,6 +119,92 @@ const knowledgeBase = [
     whenToSeekHelp:
       "Watch closely for fever, diarrhea, or skin infections in flood-affected communities and report clusters of illness to health authorities quickly.",
   },
+  {
+    keywords: ["malaria", "mosquito", "dengue"],
+    disease: "Malaria & Mosquito-Borne Diseases",
+    summary:
+      "While not strictly waterborne, malaria and dengue are linked to stagnant water where mosquitoes breed, making them relevant to community water safety programs.",
+    symptoms:
+      "Malaria: fever, chills, sweating, headache, nausea. Dengue: high fever, severe headache, pain behind eyes, joint/muscle pain, rash.",
+    prevention:
+      "Eliminate stagnant water around homes (old tires, containers, blocked drains). Use mosquito nets, repellents, and wear long sleeves at dawn/dusk. Community-level larviciding of water bodies helps control breeding.",
+    treatment:
+      "Malaria requires antimalarial medication prescribed by a doctor after confirmed testing. Dengue has no specific cure — treatment focuses on fluids, rest, and fever management; avoid aspirin/ibuprofen which can worsen bleeding risk.",
+    whenToSeekHelp:
+      "Seek care immediately for high fever with chills, or any bleeding/bruising with fever, as this can indicate severe dengue.",
+  },
+  {
+    keywords: ["boiling water", "boil water", "safe drinking water"],
+    disease: "Safe Drinking Water Practices",
+    summary:
+      "Making water safe to drink is one of the most powerful ways to prevent nearly all waterborne diseases.",
+    symptoms: "Not applicable — this is a prevention practice.",
+    prevention:
+      "Boil water for at least 1 minute (3 minutes at high altitude) to kill most pathogens. Alternatively, use water purification tablets, a good quality filter, or solar disinfection (leaving water in clear bottles in direct sunlight for 6+ hours). Store treated water in clean, covered containers, and use a clean cup/ladle — never dip hands into stored water.",
+    treatment: "Not applicable.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["sanitation", "toilet", "open defecation"],
+    disease: "Sanitation & Toilet Hygiene",
+    summary:
+      "Proper sanitation infrastructure, like safe toilets, is essential to prevent human waste from contaminating water sources.",
+    symptoms: "Not applicable — this is a prevention practice.",
+    prevention:
+      "Use a proper latrine/toilet rather than open defecation, especially near water sources. Ensure toilets are located away from wells and rivers. Wash hands with soap after using the toilet. Community sanitation programs significantly reduce diarrheal disease rates.",
+    treatment: "Not applicable.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["food safety", "food hygiene", "street food"],
+    disease: "Food Safety & Hygiene",
+    summary:
+      "Contaminated food is a major pathway for waterborne and foodborne diseases, especially in areas with unsafe water supply.",
+    symptoms: "Not applicable — this is a prevention practice.",
+    prevention:
+      "Cook food thoroughly, especially meat and seafood. Eat food while it's hot. Avoid raw vegetables/fruits that can't be peeled in high-risk areas. Wash fruits and vegetables with safe water. Store cooked food properly and reheat thoroughly before eating leftovers.",
+    treatment: "Not applicable.",
+    whenToSeekHelp:
+      "If several people who ate the same food become sick with vomiting/diarrhea, report it to local health authorities as a possible food poisoning outbreak.",
+  },
+  {
+    keywords: ["asha worker", "asha", "community health worker"],
+    disease: "Role of ASHA Workers",
+    summary:
+      "ASHA (Accredited Social Health Activist) workers are community health workers who play a critical role in early detection and prevention of waterborne diseases in rural India.",
+    symptoms: "Not applicable.",
+    prevention:
+      "ASHA workers should: monitor and report suspected disease cases quickly, educate communities on hygiene and safe water practices, distribute ORS and basic medicines, and coordinate with health officials during outbreaks.",
+    treatment: "Not applicable.",
+    whenToSeekHelp:
+      "ASHA workers should escalate any cluster of similar symptoms in a village to the nearest Primary Health Centre (PHC) immediately.",
+  },
+  {
+    keywords: ["outbreak", "epidemic", "cluster"],
+    disease: "Outbreak Response Basics",
+    summary:
+      "An outbreak is when disease cases occur more often than expected in a specific area or group, often signaling contaminated water or food sources.",
+    symptoms: "Not applicable.",
+    prevention:
+      "Regular water quality testing and quick case reporting help catch outbreaks early. This app automatically flags when 3 or more cases of the same disease appear in one district.",
+    treatment: "Not applicable.",
+    whenToSeekHelp:
+      "If you notice several people in the same area getting sick with similar symptoms within a short time, report it immediately through the Case Reports section and notify local health officials.",
+  },
+  {
+    keywords: ["pregnant", "pregnancy", "children risk"],
+    disease: "High-Risk Groups (Pregnant Women & Children)",
+    summary:
+      "Pregnant women, young children, and elderly people are at higher risk of severe complications from waterborne diseases.",
+    symptoms:
+      "Same core symptoms as the specific disease, but dehydration and complications progress faster in these groups.",
+    prevention:
+      "Extra care with water and food safety is essential. Pregnant women should avoid unsafe water/food entirely where possible. Ensure children are up to date on relevant vaccines (like Hepatitis A, typhoid where available).",
+    treatment:
+      "Seek medical care earlier rather than later for these groups — do not wait to see if symptoms improve on their own.",
+    whenToSeekHelp:
+      "Any fever, diarrhea, or vomiting in a pregnant woman, infant, or elderly person should be checked by a health worker promptly.",
+  },
 ];
 
 export default knowledgeBase;
