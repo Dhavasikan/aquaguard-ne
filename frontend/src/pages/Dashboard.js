@@ -4,6 +4,7 @@ import axios from "axios";
 
 function Dashboard() {
   const [reports, setReports] = useState([]);
+  const [waterReadings, setWaterReadings] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
@@ -13,6 +14,11 @@ function Dashboard() {
     });
   }, []);
 
+  useEffect(() => {
+    axios.get("https://aquaguard-ne.onrender.com/api/water").then((res) => {
+      setWaterReadings(res.data);
+    });
+  }, []);
   const totalCases = reports.length;
   const pendingCases = reports.filter((r) => r.status === "PENDING").length;
   const resolvedCases = reports.filter((r) => r.status === "RESOLVED").length;
@@ -177,13 +183,20 @@ function Dashboard() {
 
           <div className="dashboard-card">
             <div className="card-header"><h3>Water Source Alerts</h3></div>
-            <div className="water-alerts">
-              <div className="water-item high">🔴 Barak River — pH 5.2 (Acidic) · High Risk</div>
-              <div className="water-item medium">🟡 Umiam Lake — Turbidity 45 NTU · Medium Risk</div>
-              <div className="water-item low">🟢 Kamrup Tubewell 3 — pH 7.1 · Normal</div>
-              <div className="water-item medium">🟡 Silchar Canal — TDS 420 ppm · Monitor</div>
-              <div className="water-item high">🔴 Cachar Open Well — E.coli detected · Critical</div>
-            </div>
+<div className="water-alerts">
+          {waterReadings.length === 0 && (
+            <div className="water-item low">No water readings yet.</div>
+          )}
+          {waterReadings.map((w) => {
+            const level = w.riskLevel ? w.riskLevel.toLowerCase() : "low";
+            const icon = level === "high" ? "🔴" : level === "medium" ? "🟡" : "🟢";
+            return (
+              <div className={`water-item ${level}`} key={w.id}>
+                {icon} {w.sourceName} — pH {w.ph} · {w.riskLevel} Risk
+              </div>
+            );
+          })}
+        </div>
           </div>
 
           <div className="dashboard-card">
