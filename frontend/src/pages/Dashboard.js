@@ -183,11 +183,17 @@ function Dashboard() {
 
           <div className="dashboard-card">
             <div className="card-header"><h3>Water Source Alerts</h3></div>
-<div className="water-alerts">
+          <div className="water-alerts">
           {waterReadings.length === 0 && (
             <div className="water-item low">No water readings yet.</div>
           )}
-          {waterReadings.map((w) => {
+          {waterReadings
+        .filter((w) => w.riskLevel && w.riskLevel.toLowerCase() !== "low")
+        .sort((a, b) => {
+          const order = { high: 0, medium: 1, low: 2 };
+          return order[a.riskLevel.toLowerCase()] - order[b.riskLevel.toLowerCase()];
+        })
+          .map((w) => {
             const level = w.riskLevel ? w.riskLevel.toLowerCase() : "low";
             const icon = level === "high" ? "🔴" : level === "medium" ? "🟡" : "🟢";
             return (
