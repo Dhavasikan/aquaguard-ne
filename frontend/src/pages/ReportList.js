@@ -199,13 +199,41 @@ const handleStatusChange = async (id, newStatus) => {
                         onBlur={(e) => handleActionUpdate(r.id, e.target.value)}
                       />
                     </td>
-                    <td>
-<select value={r.status} onChange={(e) => handleStatusChange(r.id, e.target.value)}>
-                      <option value="PENDING">PENDING</option>
-                      <option value="VERIFIED">VERIFIED</option>
-                      <option value="RESOLVED">RESOLVED</option>
+<td style={{ minWidth: "160px" }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                    <select
+                      value={r.status}
+                      onChange={(e) => handleStatusChange(r.id, e.target.value)}
+                      style={{
+                        padding: "8px",
+                        borderRadius: "6px",
+                        border: "1px solid #2f6e4e",
+                        backgroundColor: "#0d2b1f",
+                        color: "#e6f4ea",
+                        fontSize: "13px",
+                      }}
+                    >
+                      <option value="PENDING">⏳ Pending</option>
+                      <option value="VERIFIED">✅ Verified</option>
+                      <option value="RESOLVED">☑️ Resolved</option>
                     </select>
-                    <button className="btn-danger" onClick={() => handleDelete(r.id)}>Delete</button>                    </td>
+                    <button
+                      className="btn-danger"
+                      onClick={() => {
+                        if (window.confirm("Delete this report? This cannot be undone.")) {
+                          handleDelete(r.id);
+                        }
+                      }}
+                      style={{
+                        padding: "6px 10px",
+                        borderRadius: "6px",
+                        fontSize: "13px",
+                      }}
+                    >
+                      🗑️ Delete
+                    </button>
+                  </div>
+                </td>
                   </tr>
                 ))
               )}
