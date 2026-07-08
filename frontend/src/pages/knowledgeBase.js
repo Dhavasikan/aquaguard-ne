@@ -205,6 +205,192 @@ const knowledgeBase = [
     whenToSeekHelp:
       "Any fever, diarrhea, or vomiting in a pregnant woman, infant, or elderly person should be checked by a health worker promptly.",
   },
+  {
+    keywords: ["paracetamol", "fever medicine", "acetaminophen"],
+    disease: "Paracetamol (Fever & Pain Relief)",
+    summary:
+      "Paracetamol (acetaminophen) is a common medicine used to reduce fever and relieve mild pain. It's often the first choice for fever in waterborne diseases.",
+    symptoms: "Not applicable — this is a medicine, not a disease.",
+    prevention: "Not applicable.",
+    treatment:
+      "Take as per package instructions or a doctor's advice, usually every 4-6 hours as needed, not exceeding the daily maximum dose. Do not combine with other paracetamol-containing products. Avoid in people with liver problems without medical advice.",
+    whenToSeekHelp:
+      "If fever doesn't reduce after taking paracetamol, or returns quickly and repeatedly, see a doctor rather than continuing to self-medicate.",
+  },
+  {
+    keywords: ["zinc", "zinc supplement", "zinc tablets"],
+    disease: "Zinc Supplementation",
+    summary:
+      "Zinc supplements are recommended alongside ORS for children with diarrhea, as they help reduce the duration and severity of the illness and future episodes.",
+    symptoms: "Not applicable — this is a treatment supplement.",
+    prevention:
+      "Regular zinc intake through diet (or supplements in deficient populations) can reduce diarrhea frequency in children.",
+    treatment:
+      "For children with diarrhea: 10mg/day for infants under 6 months, 20mg/day for children over 6 months, given for 10-14 days alongside ORS, as recommended by WHO/UNICEF guidelines.",
+    whenToSeekHelp: "Consult a health worker for correct dosing, especially for infants.",
+  },
+  {
+    keywords: ["antibiotics", "antibiotic resistance", "medicine course"],
+    disease: "Antibiotics & Antibiotic Resistance",
+    summary:
+      "Antibiotics treat bacterial infections like typhoid and leptospirosis, but must be used correctly to avoid resistance, where bacteria become harder to treat.",
+    symptoms: "Not applicable.",
+    prevention:
+      "Only take antibiotics prescribed by a qualified doctor. Complete the full course even if symptoms improve early. Never share antibiotics or use leftover doses from a previous illness.",
+    treatment:
+      "Follow the prescribed dose and duration exactly. Antibiotics do NOT work on viral infections (like most diarrhea or Hepatitis A), so they should only be used when a bacterial cause is confirmed or strongly suspected by a doctor.",
+    whenToSeekHelp:
+      "If side effects like severe rash, breathing difficulty, or severe stomach pain occur after taking antibiotics, seek medical help immediately.",
+  },
+  {
+    keywords: ["vaccine", "vaccination", "immunization"],
+    disease: "Vaccines for Waterborne Diseases",
+    summary:
+      "Vaccines exist for some waterborne diseases like typhoid and Hepatitis A, and can significantly reduce risk in high-exposure areas.",
+    symptoms: "Not applicable.",
+    prevention:
+      "Typhoid vaccine and Hepatitis A vaccine are recommended in high-risk regions, especially for children and travelers. Vaccination doesn't replace safe water and hygiene practices — it's an added layer of protection.",
+    treatment: "Not applicable.",
+    whenToSeekHelp:
+      "Consult your local health center or ASHA worker about vaccine availability and eligibility in your area.",
+  },
+  {
+    keywords: ["chlorination", "chlorine tablets", "water disinfection"],
+    disease: "Chlorination & Water Disinfection",
+    summary:
+      "Chlorination is a widely used, low-cost method to disinfect water at both household and community levels.",
+    symptoms: "Not applicable.",
+    prevention:
+      "Use chlorine tablets or liquid chlorine (like sodium hypochlorite solution) following package instructions. Typically, water should sit for 30 minutes after adding chlorine before use. Store chlorinated water in clean, covered containers.",
+    treatment: "Not applicable.",
+    whenToSeekHelp:
+      "If water still tastes/smells strongly of contamination after treatment, or if a community water source needs large-scale disinfection, contact water/health authorities.",
+  },
+  {
+    keywords: ["well water", "borewell", "hand pump", "tube well"],
+    disease: "Well & Borewell Water Safety",
+    summary:
+      "Wells, borewells, and hand pumps are common water sources in rural areas but can become contaminated from nearby latrines, flooding, or poor maintenance.",
+    symptoms: "Not applicable.",
+    prevention:
+      "Locate wells at least 15-30 meters away from latrines/soak pits. Keep the area around the well clean and well-drained. Cover wells to prevent debris and animals from contaminating water. Test well water periodically, especially after floods.",
+    treatment:
+      "If contamination is suspected, boil or chlorinate the water before use and report it for community-level testing.",
+    whenToSeekHelp:
+      "Report any well water with unusual color, smell, or taste to local health/water authorities immediately.",
+  },
+  {
+    keywords: ["rainwater harvesting", "rainwater storage"],
+    disease: "Rainwater Harvesting & Storage",
+    summary:
+      "Rainwater harvesting can provide a valuable water source, but stored rainwater must be handled carefully to avoid contamination.",
+    symptoms: "Not applicable.",
+    prevention:
+      "Use clean, covered storage tanks. Ensure roof catchment areas are clean of debris/bird droppings before collection. Filter and treat (boil or chlorinate) stored rainwater before drinking, especially after long storage periods.",
+    treatment: "Not applicable.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["waste management", "garbage disposal", "solid waste"],
+    disease: "Waste Management & Community Health",
+    summary:
+      "Poor waste management can contaminate nearby water sources and attract disease-carrying pests like rats and mosquitoes.",
+    symptoms: "Not applicable.",
+    prevention:
+      "Dispose of household waste in covered bins, away from water sources. Avoid dumping waste near rivers, ponds, or wells. Support community waste collection and disposal systems where available.",
+    treatment: "Not applicable.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["primary health centre", "phc", "hospital", "nearest hospital"],
+    disease: "Primary Health Centres (PHC) & Referral",
+    summary:
+      "A Primary Health Centre (PHC) is usually the first point of contact for rural healthcare in India, equipped to handle common illnesses and refer serious cases further.",
+    symptoms: "Not applicable.",
+    prevention: "Not applicable.",
+    treatment:
+      "PHCs can provide ORS, basic medicines, and first-line treatment for many waterborne diseases. Severe cases (like severe dehydration, jaundice, or organ complications) are typically referred to a district hospital.",
+    whenToSeekHelp:
+      "Contact your nearest PHC or ASHA worker for any case that doesn't improve with home care, or immediately for severe symptoms.",
+  },
+  {
+    keywords: ["risk level", "high risk", "medium risk", "low risk meaning"],
+    disease: "Understanding Risk Levels in This App",
+    summary:
+      "This website automatically calculates a Risk Level (Low, Medium, or High) for each case report based on the disease type and reported symptoms.",
+    symptoms: "Not applicable — this explains a website feature.",
+    prevention: "Not applicable.",
+    treatment:
+      "High risk means the case needs urgent attention (e.g., cholera, or symptoms like dehydration/jaundice). Medium risk means the case should be monitored closely with specific treatment. Low risk means general monitoring and hygiene advice is sufficient. This is calculated automatically — you don't need to set it manually.",
+    whenToSeekHelp:
+      "Always treat a 'High' risk flag as a signal to act quickly, regardless of how the patient currently looks.",
+  },
+  {
+    keywords: ["add report", "how to add report", "new case report", "submit report"],
+    disease: "How to Add a Case Report (Website Help)",
+    summary:
+      "This explains how to submit a new case report on the AquaGuard NE website.",
+    symptoms: "Not applicable — this is a website how-to.",
+    prevention: "Not applicable.",
+    treatment:
+      "Go to the 'Add Report' page from the left menu or the 'New Case Report' button on the Dashboard. Fill in the patient's details, village, district, disease, symptoms, and date, then submit. The report will appear immediately in Case Reports with an automatically calculated risk level and suggested action.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["water quality page", "add water reading", "how to add water quality"],
+    disease: "How to Add a Water Quality Reading (Website Help)",
+    summary:
+      "This explains how to record a new water quality test on the AquaGuard NE website.",
+    symptoms: "Not applicable — this is a website how-to.",
+    prevention: "Not applicable.",
+    treatment:
+      "Go to the 'Water Quality' page from the left menu or Dashboard Quick Actions. Fill in the source name, district, pH level, turbidity, risk level, and test date, then click 'Add Reading'. It will appear in the table below and on the Dashboard's Water Source Alerts if it's Medium or High risk.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["status meaning", "pending verified resolved", "what does pending mean"],
+    disease: "Understanding Report Status (Website Help)",
+    summary:
+      "Each case report has a status showing where it is in the review process.",
+    symptoms: "Not applicable — this is a website how-to.",
+    prevention: "Not applicable.",
+    treatment:
+      "Pending means the report has been submitted but not yet reviewed. Verified means a health worker has confirmed the case details. Resolved means the patient has recovered or the case is closed. You can change a report's status using the dropdown in the Case Reports table.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["register user", "add asha worker", "how to register"],
+    disease: "How to Register a New User (Website Help)",
+    summary:
+      "This explains how to add a new ASHA worker or staff account on the AquaGuard NE website.",
+    symptoms: "Not applicable — this is a website how-to.",
+    prevention: "Not applicable.",
+    treatment:
+      "Go to the 'Register User' page from the left menu. Fill in the required details for the new worker and submit. They can then log in with the credentials created.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["dashboard", "what is dashboard", "dashboard mean"],
+    disease: "About the Dashboard (Website Help)",
+    summary:
+      "The Dashboard is the main overview page of the AquaGuard NE website.",
+    symptoms: "Not applicable — this is a website how-to.",
+    prevention: "Not applicable.",
+    treatment:
+      "It shows total reports, pending/verified/resolved counts, a disease breakdown chart, recent case reports, real water source alerts, and quick action buttons to jump to other pages like Add Report, Water Quality, and this chatbot.",
+    whenToSeekHelp: "Not applicable.",
+  },
+  {
+    keywords: ["about this website", "what is aquaguard", "purpose of this app"],
+    disease: "About AquaGuard NE",
+    summary:
+      "AquaGuard NE is a smart community health monitoring and early warning system for water-borne disease surveillance across Northeast India.",
+    symptoms: "Not applicable.",
+    prevention: "Not applicable.",
+    treatment:
+      "It tracks cholera, typhoid, hepatitis A, diarrhea, and leptospirosis cases across NE India, provides digital case reporting, a real-time dashboard, automated outbreak alerts, water quality monitoring, and this health assistant chatbot — all to help health workers respond faster and more effectively.",
+    whenToSeekHelp: "Not applicable.",
+  },
 ];
 
 export default knowledgeBase;
