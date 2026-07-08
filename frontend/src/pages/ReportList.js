@@ -7,6 +7,34 @@ function ReportList() {
   const [reports, setReports] = useState([]);
   const [search, setSearch] = useState("");
   const user = JSON.parse(localStorage.getItem("user"));
+  const getRiskAssessment = (report) => {
+    const disease = (report.disease || "").toLowerCase();
+    const symptoms = (report.symptoms || "").toLowerCase();
+
+    let level = "Low";
+    let suggestion = "Monitor patient and provide general hygiene advice.";
+    let urgent = false;
+
+    const severeDiseases = ["cholera", "leptospirosis"];
+    const moderateDiseases = ["typhoid", "hepatitis a"];
+
+    const severeSymptomWords = ["dehydration", "vomiting", "unconscious", "jaundice", "blood"];
+    const hasSevereSymptom = severeSymptomWords.some((w) => symptoms.includes(w));
+
+    if (severeDiseases.some((d) => disease.includes(d)) || hasSevereSymptom) {
+      level = "High";
+      suggestion = "Escalate immediately: start ORS/IV fluids and refer to nearest PHC.";
+      urgent = true;
+    } else if (moderateDiseases.some((d) => disease.includes(d))) {
+      level = "Medium";
+      suggestion = "Start antibiotics as prescribed, monitor fever closely, recheck in 2-3 days.";
+    } else if (disease.includes("diarrhea")) {
+      level = "Medium";
+      suggestion = "Give ORS, continue feeding, monitor for dehydration signs.";
+    }
+
+    return { level, suggestion, urgent };
+  };
 
   const loadReports = () => {
     axios.get("https://aquaguard-ne.onrender.com/api/reports").then((res) => {
@@ -112,6 +140,8 @@ const handleStatusChange = async (id, newStatus) => {
                 <th>Symptoms</th>
                 <th>Date</th>
                 <th>Status</th>
+                <th>Risk Level</th>
+<th>Suggested Action</th>
                 <th>Actions Taken</th>
                 <th>Action</th>
               </tr>
@@ -146,6 +176,20 @@ const handleStatusChange = async (id, newStatus) => {
                     <td className="symptoms-cell">{r.symptoms}</td>
                     <td>{r.reportDate}</td>
                     <td><span className={getStatusClass(r.status)}>{r.status}</span></td>
+                    <td>
+                  {(() => {
+                    const risk = getRiskAssessment(r);
+                    const color = risk.level === "High" ? "#ff6b6b" : risk.level === "Medium" ? "#ffd166" : "#51cf66";
+                    return (
+                      <span style={{ color: color, fontWeight: "bold" }}>
+                        {risk.urgent ? "🔴 " : risk.level === "Medium" ? "🟡 " : "🟢 "}{risk.level}
+                      </span>
+                    );
+                  })()}
+                </td>
+                <td style={{ fontSize: "13px", maxWidth: "220px" }}>
+                  {getRiskAssessment(r).suggestion}
+                </td>
                     <td>
                       <input
                       className="action-input"
