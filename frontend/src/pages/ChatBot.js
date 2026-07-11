@@ -134,10 +134,19 @@ function ChatBot() {
       return;
     }
 
-    addMessage(
-      "bot",
-      "I'm not sure about that one. Try asking about a specific disease (cholera, typhoid, hepatitis A, diarrhea, leptospirosis), water quality, hygiene, ORS, or your live case/report stats."
-    );
+    try {
+        const aiRes = await axios.post("https://aquaguard-ne.onrender.com/api/chat/ask", {
+          question: question,
+        });
+        const aiText = aiRes.data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        addMessage("bot", aiText || "Sorry, I couldn't get an answer right now. Please try again.");
+      } catch (err) {
+        console.error("AI chat error:", err);
+        addMessage(
+          "bot",
+          "I'm having trouble reaching the AI assistant right now. Try asking about a specific disease, water quality, or your live case/report stats."
+        );
+      }
     setLoading(false);
   };
 
