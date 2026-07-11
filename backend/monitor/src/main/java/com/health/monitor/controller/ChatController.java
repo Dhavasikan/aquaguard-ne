@@ -23,7 +23,7 @@ public class ChatController {
     public ResponseEntity<String> ask(@RequestBody Map<String, String> body) {
         String question = body.get("question");
 
-        String geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key="
+        String geminiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key="
                 + geminiApiKey;
 
         String systemPrompt = "You are the AquaGuard NE Health and Water Assistant, built into a community health monitoring website for Northeast India. "
