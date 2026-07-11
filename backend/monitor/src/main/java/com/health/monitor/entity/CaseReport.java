@@ -29,4 +29,5 @@ public class CaseReport {
     private Integer reportedBy;
     private String status = "PENDING";
     private String actionsTaken = "";
+    private String aiSummary = "";
 }
