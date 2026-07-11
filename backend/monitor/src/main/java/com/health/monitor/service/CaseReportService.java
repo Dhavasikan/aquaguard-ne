@@ -1,17 +1,21 @@
 package com.health.monitor.service;
 
-import com.health.monitor.entity.CaseReport;
-import com.health.monitor.repository.CaseReportRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
+import com.health.monitor.entity.CaseReport;
+import com.health.monitor.repository.CaseReportRepository;
 
 @Service
 public class CaseReportService {
 
-    @Autowired
-    private AiService aiService;
-    private CaseReportRepository repository;
+   @Autowired
+private AiService aiService;
+
+@Autowired
+private CaseReportRepository repository;
 
     public List<CaseReport> getAllReports() {
         return repository.findAll();
