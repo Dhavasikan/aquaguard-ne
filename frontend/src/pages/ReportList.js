@@ -204,8 +204,32 @@ function ReportList() {
                         onBlur={(e) => handleActionUpdate(r.id, e.target.value)}
                       />
                     </td>
-                   <td style={{ fontSize: "13px", maxWidth: "200px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={r.aiSummary || "Not generated"}>
-  {r.aiSummary || "Not generated"}
+                  <td style={{ maxWidth: "220px" }}>
+  {r.aiSummary ? (
+    <>
+      <span style={{
+        display: "inline-block",
+        fontFamily: "monospace",
+        fontSize: "10px",
+        letterSpacing: "0.05em",
+        textTransform: "uppercase",
+        color: "#7cc4f0",
+        background: "#12324a",
+        padding: "2px 7px",
+        borderRadius: "4px",
+        marginBottom: "6px",
+      }}>
+        ✦ AI reading
+      </span>
+      <div style={{ fontSize: "13px", lineHeight: "1.5", color: "#e6f4ea" }}>
+        {r.aiSummary}
+      </div>
+    </>
+  ) : (
+    <span style={{ fontSize: "13px", fontStyle: "italic", color: "#5c7a6e" }}>
+      Not generated
+    </span>
+  )}
 </td>
                     <td style={{ minWidth: "160px" }}>
                       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
