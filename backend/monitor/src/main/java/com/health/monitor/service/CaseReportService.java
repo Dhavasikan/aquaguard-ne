@@ -12,10 +12,10 @@ import com.health.monitor.repository.CaseReportRepository;
 public class CaseReportService {
 
    @Autowired
-private AiService aiService;
+    private AiService aiService;
 
 @Autowired
-private CaseReportRepository repository;
+    private CaseReportRepository repository;
 
     public List<CaseReport> getAllReports() {
         return repository.findAll();
