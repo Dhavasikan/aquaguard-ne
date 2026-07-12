@@ -221,9 +221,22 @@ function ReportList() {
       }}>
         ✦ AI reading
       </span>
-      <div style={{ fontSize: "13px", lineHeight: "1.5", color: "#e6f4ea" }}>
-        {r.aiSummary}
-      </div>
+     <div
+  title={r.aiSummary}
+  style={{
+    fontSize: "13px",
+    lineHeight: "1.5",
+    color: "#e6f4ea",
+    maxHeight: "40px",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    WebkitLineClamp: 2,
+    WebkitBoxOrient: "vertical",
+  }}
+>
+  {r.aiSummary}
+</div>
     </>
   ) : (
     <span style={{ fontSize: "13px", fontStyle: "italic", color: "#5c7a6e" }}>
