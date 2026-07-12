@@ -204,9 +204,9 @@ function ReportList() {
                         onBlur={(e) => handleActionUpdate(r.id, e.target.value)}
                       />
                     </td>
-                    <td style={{ fontSize: "13px", maxWidth: "220px" }}>
-                      {r.aiSummary || "Not generated"}
-                    </td>
+                   <td style={{ fontSize: "13px", maxWidth: "200px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={r.aiSummary || "Not generated"}>
+  {r.aiSummary || "Not generated"}
+</td>
                     <td style={{ minWidth: "160px" }}>
                       <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                         <select
