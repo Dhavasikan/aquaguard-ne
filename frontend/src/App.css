@@ -109,6 +109,7 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: #0e1a14; color: #
 
 /* MAIN CONTENT */
 .main-content { flex: 1; padding: 2rem 2.5rem; overflow-y: auto; min-width: 0; }
+.app-layout { background: linear-gradient(160deg, #0a1a10 0%, #12241a 100%); }
 
 /* PAGE HEADER */
 .page-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem; }
